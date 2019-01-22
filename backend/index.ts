@@ -6,11 +6,19 @@ const port = 80;
 const app = express();
 app.use(
   history({
-    verbose: true
+    verbose: true,
+    rewrites: [
+        {
+          from: /^\/api$/,
+          to: function(context) {
+            return '/api'// + context.parsedUrl.pathname;
+          }
+        }
+      ]
   })
 );
 
-app.use("/", express.static("../frontend/dist"));
 app.get('/api', (req, res) => res.send('Hello World!'))
+app.use("/", express.static("../frontend/dist"));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
