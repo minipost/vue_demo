@@ -5,8 +5,8 @@
         <b-navbar-toggle target="nav_dropdown_collapse"></b-navbar-toggle>
         <b-collapse is-nav id="nav_dropdown_collapse">
           <b-navbar-nav>
-            <b-nav-item v-bind:to="settingsUrl">{{$t('SETTINGS')}}</b-nav-item>
-            <b-nav-item v-bind:to="aboutUrl"> {{$t('ABOUT')}}</b-nav-item>
+            <b-nav-item  :to="{ name: 'Settings' }" replace>{{$t('SETTINGS')}}</b-nav-item>
+            <b-nav-item  :to="{ name: 'About'}" replace> {{$t('ABOUT')}}</b-nav-item>
             <b-nav-item-dropdown :text="$t('LANG')" right>
               <b-dropdown-item @click="changeLocale('en')">en</b-dropdown-item>
               <b-dropdown-item @click="changeLocale('da')">da</b-dropdown-item>
@@ -36,7 +36,7 @@ export default class Nav extends Vue implements INav {
       newPath += "/" + path[i];
     }
     console.log(newPath);
-    this.$router.push(newPath);
+    this.$router.replace(newPath);
     this.$router.go(0); // hack to refresh/re-render components
   }
   private get aboutUrl() {

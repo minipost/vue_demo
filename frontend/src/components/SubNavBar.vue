@@ -1,20 +1,20 @@
 <template>
   <b-container fluid>
     <b-row>
-      <b-col md="auto" style="background-color:bisque">
-        <b-nav fill tabs vertical toggleable>
-          <b-navbar-toggle variant="primary" target="nav_dropdown_collapse2"></b-navbar-toggle>
-          <b-collapse is-nav id="nav_dropdown_collapse2">
+      <b-col md="1" style="background-color:bisque">
+        <b-nav tabs vertical style="background-color:bisque" >
+          <!-- <b-navbar-toggle label="hh" target="nav_dropdown_collapse2" >&lt;</b-navbar-toggle> -->
+          <b-collapse id="nav_dropdown_collapse2" visible>
             <b-nav-item
               v-for="item in getOptions"
               v-bind:key="item.$index"
               v-bind:to="item.path"
-            >{{item.name}}</b-nav-item>
+            replace>{{$t(item.name)}}</b-nav-item>
           </b-collapse>
         </b-nav>
       </b-col>
       <b-col>
-        <p>{{getOptions[0].path}}</p>
+        <!-- <p>{{getOptions[0].path}}</p> -->
         <router-view></router-view>
       </b-col>
     </b-row>
@@ -36,7 +36,7 @@ export default class SubNavBar extends Vue {
   private get getOptions() {
     const path = this.path;
     return this.options.map(val => {
-      val.path = path + val.path.replace(".", '');
+      val.path = path + val.path.replace(".", "");
       return val;
     });
   }

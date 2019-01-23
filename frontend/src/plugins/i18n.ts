@@ -8,7 +8,9 @@ export interface Translations {
   'SOME_TEXT'?: string;
   'SOME_OTHER_TEXT': string;
   'LANG'?: string;
-  'SETTINGS'?: string
+  'SETTINGS'?: string;
+  'LOGIN'?: string;
+  'TIME'?: string;
 }
 interface Messages {
   en: Translations;
@@ -24,6 +26,8 @@ const messages = {
     'SOME_OTHER_TEXT': "Some other text",
     'LANG': "lang",
     'SETTINGS': "settings",
+    'LOGIN': "login",
+    'TIME': "time"
   },
   da: {
     'HOME': "hjem",
@@ -33,6 +37,8 @@ const messages = {
     'SOME_OTHER_TEXT': "Noget andet text",
     'LANG': "sprog",
     'SETTINGS': "indstillinger",
+    'LOGIN': "login",
+    'TIME': "tid"
 
   }
 };

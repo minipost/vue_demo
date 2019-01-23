@@ -3,7 +3,7 @@ import Router, { RouterOptions } from "vue-router";
 import Settings from "./views/Settings.vue";
 import i18n from "@/plugins/i18n";
 // import NavBar from "./components/NavBar.vue";
-import MainView from "./views/MainView.vue"
+import MainView from "./views/MainView.vue";
 import NotFound from "./components/NotFount.vue";
 
 const router = new Router({
@@ -12,17 +12,16 @@ const router = new Router({
   routes: [
     {
       path: "/:lang([a-z]+)",
-      name: "lang",
+      name: "Lang",
       component: MainView,
       beforeEnter: (to, from, next) => {
+        // console.log('to: "', to.path, '" from: "', from.path, '"');
         const lang = to.params.lang;
         if (["da", "en"].includes(lang)) {
           if (i18n.locale !== lang) {
             i18n.locale = lang;
-            next();
-          } else {
-            next();
           }
+          next();
         } else {
           alert("Language " + to.params.lang + " not supported");
           next(false);
@@ -43,21 +42,18 @@ const router = new Router({
               name: "login",
               path: "login",
               component: () => import("./components/Settings.login.vue")
-            },
+            }
           ]
         },
         {
+          name: "About",
           path: "About",
           component: () => import("./views/About.vue")
         },
         {
-          path: "dev",// hidden menues for development
+          path: "dev", // hidden menues for development
           component: () => import("./components/ApiTest.vue")
-        },
-        // {
-        //   path: "subnav",// for test
-        //   component: () => import("./components/SubNavBarHome.vue")
-        // }
+        }
       ]
     },
     { path: "", redirect: "/en/" },
@@ -66,11 +62,17 @@ const router = new Router({
     {
       path: "*",
       // redirect: "/404",
-      beforeEnter: (to, from, next) => {
-      console.error('to',to,'from',from);
-      next()
-    }}
+      // beforeEnter: (to, from, next) => {
+      //   console.error("to", to, "from", from);
+      //   next();
+      // }
+    }
   ]
+});
+
+router.beforeEach((to, from, next) => {
+  // console.log(from.path, "=>", to.path);
+  next();
 });
 Vue.use(Router);
 

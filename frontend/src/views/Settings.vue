@@ -12,7 +12,7 @@ import SubNavBar from "../components/SubNavBar.vue";
   },
 })
 export default class SettingsView extends Vue {
-  private links=[{name:'time',path:'./time'},{name:'login',path:'./login'}]
+  private links=[{name:'TIME',path:'./time'},{name:'LOGIN',path:'./login'}]
   private get settingsUrl() {
     return '/'+this.$i18n.locale + "/settings";
   }
