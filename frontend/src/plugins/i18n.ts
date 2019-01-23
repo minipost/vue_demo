@@ -1,12 +1,13 @@
 import Vue from "vue";
 import VueI18n from "vue-i18n";
 
-interface Translations {
+export interface Translations {
   HOME?: string;
   ABOUT?: string;
   SOME_TEXT?: string;
   SOME_OTHER_TEXT: string;
   LANG?: string;
+  SETTINGS?: string
 }
 interface Messages {
   en: Translations;
@@ -20,6 +21,7 @@ const messages = {
     SOME_TEXT: "Some text",
     SOME_OTHER_TEXT: "Some other text",
     LANG: "lang",
+    SETTINGS: "settings",
   },
   da: {
     HOME: "hjem",
@@ -27,6 +29,7 @@ const messages = {
     SOME_TEXT: "Noget text",
     SOME_OTHER_TEXT: "Noget andet text",
     LANG: "sprog",
+    SETTINGS: "indstillinger",
 
   }
 };

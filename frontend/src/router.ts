@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router, { RouterOptions } from "vue-router";
-import Home from "./views/Home.vue";
+import Settings from "./views/Settings.vue";
 import i18n from "@/plugins/i18n";
 // import NavBar from "./components/NavBar.vue";
 import MainView from "./views/MainView.vue"
@@ -30,23 +30,46 @@ const router = new Router({
       },
       children: [
         {
-          name: "Home",
-          path: "home",
-          component: Home
+          name: "Settings",
+          path: "settings",
+          component: Settings,
+          children: [
+            {
+              name: "time",
+              path: "time",
+              component: () => import("./components/Settings.time.vue")
+            },
+            {
+              name: "login",
+              path: "login",
+              component: () => import("./components/Settings.login.vue")
+            },
+          ]
         },
         {
           path: "About",
           component: () => import("./views/About.vue")
-        }
+        },
+        {
+          path: "dev",// hidden menues for development
+          component: () => import("./components/ApiTest.vue")
+        },
+        // {
+        //   path: "subnav",// for test
+        //   component: () => import("./components/SubNavBarHome.vue")
+        // }
       ]
     },
-    { path: "", redirect: "/en/home" },
-    { path: "/", redirect: "/en/home" },
+    { path: "", redirect: "/en/" },
+    { path: "/", redirect: "/en/" },
     { path: "/404", component: NotFound },
     {
       path: "*",
-      redirect: "/404"
-    }
+      // redirect: "/404",
+      beforeEnter: (to, from, next) => {
+      console.error('to',to,'from',from);
+      next()
+    }}
   ]
 });
 Vue.use(Router);

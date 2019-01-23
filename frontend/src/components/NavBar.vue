@@ -1,12 +1,12 @@
 <template>
   <div class="nav-bar">
-    <div>
+    <div class="sidenav">
       <b-navbar type="dark" variant="primary" toggleable>
         <b-navbar-toggle target="nav_dropdown_collapse"></b-navbar-toggle>
         <b-collapse is-nav id="nav_dropdown_collapse">
           <b-navbar-nav>
-            <b-nav-item to="./home">{{$t('HOME')}}</b-nav-item>
-            <b-nav-item to="./about">{{$t('ABOUT')}}</b-nav-item>
+            <b-nav-item v-bind:to="settingsUrl">{{$t('SETTINGS')}}</b-nav-item>
+            <b-nav-item v-bind:to="aboutUrl"> {{$t('ABOUT')}}</b-nav-item>
             <b-nav-item-dropdown :text="$t('LANG')" right>
               <b-dropdown-item @click="changeLocale('en')">en</b-dropdown-item>
               <b-dropdown-item @click="changeLocale('da')">da</b-dropdown-item>
@@ -24,6 +24,9 @@ interface INav {
   name: string;
 }
 @Component
+// ({
+//   computed: { aboutUrl() {return this.$i18n.locale + "/" + "about"} }
+// })
 export default class Nav extends Vue implements INav {
   public name = "nav-bar";
   private changeLocale(lang: string) {
@@ -34,8 +37,15 @@ export default class Nav extends Vue implements INav {
     }
     console.log(newPath);
     this.$router.push(newPath);
-    this.$router.go(0); // hack to rerender components
+    this.$router.go(0); // hack to refresh/re-render components
+  }
+  private get aboutUrl() {
+    return '/'+this.$i18n.locale + "/about";
+  }
+  private get settingsUrl() {
+    return '/'+this.$i18n.locale + "/settings";
   }
 }
 </script>
+
 
