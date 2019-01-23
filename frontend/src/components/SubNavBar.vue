@@ -14,6 +14,7 @@
         </b-nav>
       </b-col>
       <b-col>
+        <p>{{getOptions[0].path}}</p>
         <router-view></router-view>
       </b-col>
     </b-row>
@@ -27,15 +28,15 @@ interface MenuItem {
 }
 @Component({
   components: {},
-  props: { options: Array }
+  props: { options: Array, path: String }
 })
 export default class SubNavBar extends Vue {
   private options!: MenuItem[];
-
+  private path!: string;
   private get getOptions() {
-    const path = this.$router.currentRoute.path;
+    const path = this.path;
     return this.options.map(val => {
-      val.path = val.path.replace(".", path);
+      val.path = path + val.path.replace(".", '');
       return val;
     });
   }

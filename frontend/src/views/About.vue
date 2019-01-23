@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{$t('SOME_OTHER_TEXT')}}
+    {{$t('ABOUT.SOME_TEXT')}}
   </div>
 </template>
 <script lang="ts">

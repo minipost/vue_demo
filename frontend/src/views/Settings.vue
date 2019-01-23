@@ -1,7 +1,6 @@
 <template>
 <div>
-  <subnav-bar v-bind:options="links"></subnav-bar>
-<!-- <button @click="click">Click!</button> -->
+  <subnav-bar v-bind:options="links" v-bind:path="settingsUrl"></subnav-bar>
 </div>
 </template>
 <script lang="ts">
@@ -12,8 +11,11 @@ import SubNavBar from "../components/SubNavBar.vue";
     "subnav-bar": SubNavBar
   },
 })
-export default class SubNavBarHome extends Vue {
+export default class SettingsView extends Vue {
   private links=[{name:'time',path:'./time'},{name:'login',path:'./login'}]
+  private get settingsUrl() {
+    return '/'+this.$i18n.locale + "/settings";
+  }
   private click() {
     console.log(this.links);
   }
