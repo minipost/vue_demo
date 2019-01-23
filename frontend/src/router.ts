@@ -6,7 +6,6 @@ import i18n from "@/plugins/i18n";
 import MainView from "./views/MainView.vue"
 import NotFound from "./components/NotFount.vue";
 
-console.log('process.env.BASE_URL',process.env.BASE_URL)
 const router = new Router({
   mode: "history",
   base: (process.env.BASE_URL + "/") as string,
@@ -16,7 +15,6 @@ const router = new Router({
       name: "lang",
       component: MainView,
       beforeEnter: (to, from, next) => {
-        console.log('before')
         const lang = to.params.lang;
         if (["da", "en"].includes(lang)) {
           if (i18n.locale !== lang) {

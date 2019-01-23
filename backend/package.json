@@ -9,6 +9,8 @@
   "author": "Jonas Karlsson",
   "license": "ISC",
   "dependencies": {
-    "connect-history-api-fallback": "^1.6.0"
+    "body-parser": "^1.18.3",
+    "connect-history-api-fallback": "^1.6.0",
+    "cors": "^2.8.5"
   }
 }

@@ -19,6 +19,7 @@
     "member-ordering": false,
     "trailing-comma": [false, {"multiline": "never", "singleline": "never"}],
     "whitespace":false,
-    "no-unused-expression": false
+    "no-unused-expression": false,
+    "arrow-parens":false
   }
 }
