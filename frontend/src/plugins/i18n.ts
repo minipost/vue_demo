@@ -11,6 +11,7 @@ export interface Translations {
   'SETTINGS'?: string;
   'LOGIN'?: string;
   'TIME'?: string;
+  'PLEASE_FILL_OUT_THIS_FIELD'?: string;
 }
 interface Messages {
   en: Translations;
@@ -27,7 +28,8 @@ const messages = {
     'LANG': "lang",
     'SETTINGS': "settings",
     'LOGIN': "login",
-    'TIME': "time"
+    'TIME': "time",
+    'PLEASE_FILL_OUT_THIS_FIELD':"please fill out this field"
   },
   da: {
     'HOME': "hjem",
@@ -38,7 +40,8 @@ const messages = {
     'LANG': "sprog",
     'SETTINGS': "indstillinger",
     'LOGIN': "login",
-    'TIME': "tid"
+    'TIME': "tid",
+    'PLEASE_FILL_OUT_THIS_FIELD':"udfyld venligst dette felt"
 
   }
 };

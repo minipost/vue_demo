@@ -7,7 +7,7 @@ import i18n from "@/plugins/i18n.ts";
 
 Vue.config.productionTip = false;
 
-const v = new Vue({
+const vue = new Vue({
   i18n,
   router,
   render: (h) => h(App)

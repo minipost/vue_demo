@@ -34,7 +34,7 @@ export default class Nav extends Vue implements INav {
   private inputValue = "";
   private inputPostValue = '{"firstName": "Fred", "age": 2}';
   private async sendGetRequest(lang?: string) {
-    this.response = await api.get(this.inputValue);
+    await api.get(this.inputValue);
   }
   private async sendPostRequest(lang: string) {
     const obj = JSON.parse(this.inputPostValue);

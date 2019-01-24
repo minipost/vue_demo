@@ -1,27 +1,42 @@
 <template>
-  <b-container fluid>
+  <b-container>
+    <b-row>
+      <b-col>
+      <h3>HTTP Requests</h3>
+
+      </b-col>
+    </b-row>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-      <b-form-group id="exampleInputGroup3" label="Type:" label-for="exampleInput3">
+      <b-form-group id="requestTypeGroup" label="type:" label-for="requestTypeInput">
         <b-form-select
           @input="onRequestTypeInput"
-          id="exampleInput3"
+          id="requestTypeInput"
           :options="reqType"
           required
           v-model="form.reqType"
-        ></b-form-select>
+        >
+        </b-form-select>
       </b-form-group>
-      <b-form-group id="exampleInputGroup2" label="Url:" label-for="exampleInput2">
-        <b-form-input id="exampleInput2" type="text" v-model="form.url" required placeholder="Path"></b-form-input>
+      <b-form-group id="urlInputGroup" v-bind:label="'url: ('+url+form.url+')'" label-for="urlInputId">
+        <b-form-input
+          id="urlInputId"
+          type="text"
+          v-model="form.url"
+          required
+          placeholder="Select path"
+        >
+        
+        </b-form-input>
       </b-form-group>
       <b-form-group
         v-if="showBody"
-        id="exampleInputGroup1"
+        id="bodyInputGroup"
         label="Body:"
-        label-for="exampleInput1"
+        label-for="requestBodyId"
         description="no description"
       >
         <b-form-textarea
-          id="exampleInput1"
+          id="requestBodyId"
           type="text"
           v-model="form.body"
           required
@@ -30,7 +45,7 @@
           :max-rows="6"
         >></b-form-textarea>
       </b-form-group>
-      <b-form-group label="Header type">
+      <b-form-group label="header type">
         <b-form-radio-group id="radios2" v-model="form.headerType" name="radioSubComponent">
           <b-form-radio value="JSON">JSON</b-form-radio>
           <b-form-radio value="text">text</b-form-radio>
@@ -39,27 +54,31 @@
       <b-button type="submit" variant="primary">Send</b-button>
       <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
+    <http-response v-for="entry in responses" v-bind:key="entry.$index" v-bind="entry"></http-response>
   </b-container>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { api } from "../service/api";
+import { api, API_URL } from "../service/api";
+import { AxiosResponse } from "axios";
+import HttpResponse from "./HttpResponseWidget.vue";
 interface Event {
   preventDefault: () => void;
 }
 export default Vue.extend({
   data() {
     return {
+      url:API_URL,
       form: {
         body: "",
         url: "",
         reqType: null,
-        checked: [],
-        headerType: 'JSON'
+        headerType: "JSON"
       },
-      reqType: [{ text: "Select One", value: null }, "GET", "POST"],
-      show: true
+      reqType: [{ text: "Select request type", value: null }, "GET", "POST"],
+      show: true,
+      responses: [] as AxiosResponse[]
     };
   },
   computed: {
@@ -67,18 +86,30 @@ export default Vue.extend({
       return "POST" === (this as any).form.reqType;
     }
   },
+  components: {
+    "http-response": HttpResponse
+  },
   methods: {
-    post() {
-      const obj = JSON.parse(this.form.body);
-      api.post(this.form.url, obj);
+    async sendRequest() {
+      switch ((this.form.reqType as any) as "GET" | "POST") {
+        case "GET":
+          api.get(this.form.url).then(rsp => {
+            this.responses.unshift(rsp);
+          });
+
+          break;
+        case "POST":
+          const obj = JSON.parse(this.form.body);
+          api.post(this.form.url, obj);
+          break;
+      }
     },
     onSubmit(evt: Event) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
-      this.post();
+      this.sendRequest();
     },
     onRequestTypeInput() {
-      console.log(this.form.reqType);
+      // console.log(this.form.reqType);
     },
     onReset(evt: Event) {
       evt.preventDefault();
@@ -86,7 +117,6 @@ export default Vue.extend({
       this.form.body = "";
       this.form.url = "";
       this.form.reqType = null;
-      this.form.checked = [];
       /* Trick to reset/clear native browser form validation state */
       this.show = false;
       this.$nextTick(() => {
