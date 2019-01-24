@@ -47,13 +47,18 @@ const router = new Router({
         },
         {
           name: "About",
-          path: "About",
+          path: "about",
           component: () => import("./views/About.vue")
         },
         {
           path: "dev", // hidden menues for development
           component: () => import("./components/ApiTest.vue")
+        },
+        {
+          path: "template", // hidden menues for development
+          component: () => import("./components/Template.vue")
         }
+
       ]
     },
     { path: "", redirect: "/en/" },

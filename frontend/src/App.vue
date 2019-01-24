@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view :to="{ name: 'Lang' }"></router-view>
+    <router-view :to="{ name: 'Settings' }"></router-view>
   </div>
 </template>
 <script lang="ts">

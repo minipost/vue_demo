@@ -12,11 +12,11 @@
         >{{toggleIcon}}</b-navbar-toggle>
         <b-collapse id="nav_dropdown_collapse2" visible>
           <b-nav-item
-            v-for="item in getOptions"
+            v-for="item in options"
             v-bind:key="item.$index"
-            v-bind:to="item.path"
+            v-bind:to="{name: item.routeName}"
             replace
-          >{{$t(item.name)}}</b-nav-item>
+          >{{$t(item.text)}}</b-nav-item>
         </b-collapse>
       </b-nav>
       <!-- </b-col> -->
@@ -29,36 +29,33 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-interface MenuItem {
-  path: string;
-  name: string;
+export interface MenuItem {
+  routeName: string;
+  text: string;
 }
 @Component({
   components: {},
-  props: { options: Array, path: String }
+  props: { options: Array }
 })
 export default class SubNavBar extends Vue {
   private options!: MenuItem[];
-  private path!: string;
+  // private path!: string;
   private toggleIcon = "+";
-  private toggle() {
-    if (this.toggleIcon === "+") {
-      this.toggleIcon = "-";
-    } else {
-      this.toggleIcon = "+";
-    }
-  }
-  private get getOptions() {
-    const path = this.path;
-    return this.options.map(val => {
-      val.path = path + val.path.replace(".", "");
-      return val;
-    });
+  // private toggle() {
+  //   if (this.toggleIcon === "+") {
+  //     this.toggleIcon = "-";
+  //   } else {
+  //     this.toggleIcon = "+";
+  //   }
+  // }
+  private mounted() {
+    // got first route in list
+    this.$router.replace({ name: this.options[0].routeName });
   }
 }
 </script>
 <style lang="css" scoped>
 .sidebar {
-  background-color:rgba(98, 151, 248, 0.431);
+  background-color: rgba(98, 151, 248, 0.431);
 }
 </style>

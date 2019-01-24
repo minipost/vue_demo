@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{$t('LOGIN')}}?
+    {{$t('LOGIN')}}
   </div>
 </template>
 <script lang="ts">
