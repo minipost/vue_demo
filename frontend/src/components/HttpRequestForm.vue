@@ -2,7 +2,13 @@
   <b-container fluid>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group id="exampleInputGroup3" label="Type:" label-for="exampleInput3">
-        <b-form-select @input="onRequestTypeInput" id="exampleInput3" :options="reqType" required v-model="form.reqType"></b-form-select>
+        <b-form-select
+          @input="onRequestTypeInput"
+          id="exampleInput3"
+          :options="reqType"
+          required
+          v-model="form.reqType"
+        ></b-form-select>
       </b-form-group>
       <b-form-group id="exampleInputGroup2" label="Url:" label-for="exampleInput2">
         <b-form-input id="exampleInput2" type="text" v-model="form.url" required placeholder="Path"></b-form-input>
@@ -24,11 +30,11 @@
           :max-rows="6"
         >></b-form-textarea>
       </b-form-group>
-      <b-form-group id="exampleGroup4">
-        <b-form-checkbox-group v-model="form.checked" id="exampleChecks">
-          <b-form-checkbox value="me">JSON</b-form-checkbox>
-          <b-form-checkbox value="form.isJson">text</b-form-checkbox>
-        </b-form-checkbox-group>
+      <b-form-group label="Header type">
+        <b-form-radio-group id="radios2" v-model="form.headerType" name="radioSubComponent">
+          <b-form-radio value="JSON">JSON</b-form-radio>
+          <b-form-radio value="text">text</b-form-radio>
+        </b-form-radio-group>
       </b-form-group>
       <b-button type="submit" variant="primary">Send</b-button>
       <b-button type="reset" variant="danger">Reset</b-button>
@@ -50,7 +56,7 @@ export default Vue.extend({
         url: "",
         reqType: null,
         checked: [],
-        isJson: true,
+        headerType: 'JSON'
       },
       reqType: [{ text: "Select One", value: null }, "GET", "POST"],
       show: true
@@ -58,7 +64,7 @@ export default Vue.extend({
   },
   computed: {
     showBody() {
-      return 'POST' === ((this as any).form.reqType)
+      return "POST" === (this as any).form.reqType;
     }
   },
   methods: {
@@ -69,10 +75,10 @@ export default Vue.extend({
     onSubmit(evt: Event) {
       evt.preventDefault();
       alert(JSON.stringify(this.form));
-      this.post()
+      this.post();
     },
     onRequestTypeInput() {
-      console.log(this.form.reqType)
+      console.log(this.form.reqType);
     },
     onReset(evt: Event) {
       evt.preventDefault();
