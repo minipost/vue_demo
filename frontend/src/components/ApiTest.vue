@@ -1,5 +1,13 @@
 <template>
   <div>
+    <b-form-textarea
+      label="body:"
+      id="textarea1"
+      v-model="text"
+      placeholder="Enter something"
+      :rows="3"
+      :max-rows="6"
+    ></b-form-textarea>
     <div>
       <button @click="sendGetRequest()">makeRequest</button>
       <input v-model="inputValue" placeholder="type get command">
@@ -21,6 +29,7 @@ interface INav {
 @Component
 export default class Nav extends Vue implements INav {
   public name = "nav-bar";
+  private text = "";
   private response = "no";
   private inputValue = "";
   private inputPostValue = '{"firstName": "Fred", "age": 2}';

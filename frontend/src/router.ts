@@ -57,6 +57,10 @@ const router = new Router({
         {
           path: "template", // hidden menues for development
           component: () => import("./components/Template.vue")
+        },
+        {
+          path: "http", // hidden menues for development
+          component: () => import("./components/HttpRequestForm.vue")
         }
 
       ]
