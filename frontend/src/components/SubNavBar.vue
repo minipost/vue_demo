@@ -2,7 +2,7 @@
   <b-container fluid>
     <b-row>
       <!-- <b-col md="2" > -->
-      <b-nav fill sm="12" md="2" pills style="background-color:rgba(98, 151, 248, 0.431)" vertical>
+      <b-nav fill sm="12" md="2" pills class="bg-secondary text-white" vertical>
         <b-navbar-toggle
           type="light"
           @click="toggle()"

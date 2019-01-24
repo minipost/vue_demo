@@ -21,3 +21,6 @@ export default Vue.extend({
 });
 </script>
 
+<style lang="scss">
+@import "./assets/scss/custom.scss"
+</style>
