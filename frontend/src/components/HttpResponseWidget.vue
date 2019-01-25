@@ -1,23 +1,14 @@
 <template>
   <b-alert v-bind:variant="getVariant" dismissible :show="isShown" @dismissed="onDismissed">
-    <b-container>
-      <b-row>
-        <b-col sm="3">
-          <small>
-            <b>Status:</b>
-            {{rsp.status}}
-            <br>
-            <b>Status text:</b>
-            {{rsp.statusText}}
+    <h5 class="alert-heading">
+      <b>Status:</b>
 
-            
-          </small>
-        </b-col>
-        <b-col v-if="showBody" sm="12" md="6">
-          <h4>{{rsp.data}}</h4>
-        </b-col>
-      </b-row>
-    </b-container>
+      
+      {{rsp.statusText}}
+    </h5>
+    <p v-if="showBody">body: <i>{{rsp.data}}</i></p>
+    <hr>
+    <p class="mb-0">Code: {{rsp.status}}</p>
   </b-alert>
 </template>
 <script lang="ts">
@@ -32,11 +23,11 @@ export default Vue.extend({
     };
   },
   methods: {
-      onDismissed() {
-          this.isShown = false
-        //   console.log("dismissed")
-        //   this.$emit('dismissed',this.rsp)
-      }
+    onDismissed() {
+      this.isShown = false;
+      //   console.log("dismissed")
+      //   this.$emit('dismissed',this.rsp)
+    }
   },
   computed: {
     getVariant() {

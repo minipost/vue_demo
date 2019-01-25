@@ -12,7 +12,7 @@ class APIService {
     } catch (error) {
       response = await error.response;
     }
-    console.log(response)
+    // console.log(response)
     return response
   }
   public async get(request: string, contentType: string ="application/json") {
@@ -27,12 +27,7 @@ class APIService {
     const response = this.handleRequest(axios.post(url,object, {
       headers: { "Content-Type": contentType }
     }))
-      // .then((response) => {
-      //   console.log(response);
-      // })
-      // .catch((error) => {
-      //   console.log(error);
-      // });
+    return response
   }
   constructor() {}
 }

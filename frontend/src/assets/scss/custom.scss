@@ -5,9 +5,37 @@ $body-color: rgb(31, 48, 105);
 $theme-colors: (
   "primary": #6a81ce,
   "danger": #ff4136,
-  "secondary":rgba(224, 224, 224, 0.445)
+  "secondary": rgba(224, 224, 224, 0.445)
 );
 $enable-gradients: true;
 $enable-transitions: true;
-
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+.customElement {
+    @extend .m-3;
+    @extend .shadow; 
+    @extend .p-4; 
+    @extend .bg-secondary; 
+    @extend .rounded;
+    @extend .border;
+    @extend .border-primary;
+    border-width: 1.5px !important;
+    h4,h3,h1,h2{
+        @extend .border-bottom;
+        @extend .pb-1;
+        @extend .border-primary;
+        // @extend .m-2;    
+        border-width: 0.3px !important;
+    };
+    
+    
+}
+.subElement {
+    @extend .rounded;
+    @extend .p-2;
+    @extend .mb-2;
+    @extend .mt-2;
+    @extend .border;
+    @extend .border-primary;
+    border-width: 0.5px !important;
+}
