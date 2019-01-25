@@ -4,24 +4,29 @@ import axios from "axios";
 
 export const API_URL = "http://localhost/api/";
 class APIService {
-  public async get(request: string) {
-    const url = API_URL + request;
-    let response
+  private async handleRequest<T>(request: Promise<T>) {
+    let response: T
     try {
-      console.log(url)
-      response = await axios.get(url, {
-        headers: { "Content-Type": "application/json" }
-      });
+      response = await request
 
     } catch (error) {
-      // console.log(error)
       response = await error.response;
     }
+    console.log(response)
     return response
   }
-  public async post(path: string, object: any) {
+  public async get(request: string, contentType: string ="application/json") {
+    const url = API_URL + request;
+    const response = this.handleRequest(axios.get(url, {
+      headers: { "Content-Type": contentType }
+    }))
+    return response
+  }
+  public async post(path: string, object: any,contentType: string ="application/json") {
     const url = API_URL + path;
-    return axios.post(url,object)
+    const response = this.handleRequest(axios.post(url,object, {
+      headers: { "Content-Type": contentType }
+    }))
       // .then((response) => {
       //   console.log(response);
       // })

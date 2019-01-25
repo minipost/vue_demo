@@ -1,21 +1,20 @@
 <template>
-  <b-alert v-bind:variant="getVariant" dismissible :show="isShown" @dismissed="isShown=false">
+  <b-alert v-bind:variant="getVariant" dismissible :show="isShown" @dismissed="onDismissed">
     <b-container>
       <b-row>
         <b-col sm="3">
           <small>
             <b>Status:</b>
-            {{status}}
+            {{rsp.status}}
             <br>
             <b>Status text:</b>
-            {{statusText}}
-            <br>
+            {{rsp.statusText}}
 
-            <b>Data:</b>
+            
           </small>
         </b-col>
         <b-col v-if="showBody" sm="12" md="6">
-          <h4>{{data}}</h4>
+          <h4>{{rsp.data}}</h4>
         </b-col>
       </b-row>
     </b-container>
@@ -26,16 +25,23 @@ import Vue from "vue";
 import { AxiosResponse } from "axios";
 
 export default Vue.extend({
-  props: { data: String, status: Number, statusText: String },
+  props: { rsp: Object },
   data() {
     return {
       isShown: true
     };
   },
+  methods: {
+      onDismissed() {
+          this.isShown = false
+        //   console.log("dismissed")
+        //   this.$emit('dismissed',this.rsp)
+      }
+  },
   computed: {
     getVariant() {
       let variant;
-      if (this.statusText === "OK") {
+      if (this.rsp.statusText === "OK") {
         variant = "success";
       } else {
         variant = "danger";
@@ -44,7 +50,7 @@ export default Vue.extend({
       return variant;
     },
     showBody() {
-      if (this.statusText === "OK") {
+      if (this.rsp.statusText === "OK") {
         return true;
       } else {
         return false;
