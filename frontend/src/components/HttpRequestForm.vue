@@ -106,7 +106,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { api, API_URL } from "../service/api";
+import { api, API_URL } from "@/service/api";
 import { AxiosResponse } from "axios";
 import HttpResponse from "./HttpResponseWidget.vue";
 

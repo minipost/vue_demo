@@ -1,9 +1,9 @@
 import Vue from "vue";
 import Router, { RouterOptions } from "vue-router";
-import Settings from "./components/pages/Settings.vue";
+import Settings from "@/components/pages/settings/index.vue";
 import i18n from "@/plugins/i18n";
-import MainView from "./components/pages/MainView.vue";
-import NotFound from "./components/pages/NotFound.vue";
+import pages from "@/components/pages/index.vue";
+import NotFound from "@/components/pages/NotFound.vue";
 
 const router = new Router({
   mode: "history",
@@ -12,7 +12,7 @@ const router = new Router({
     {
       path: "/:lang([a-z]+)",
       name: "Lang",
-      component: MainView,
+      component: pages,
       beforeEnter: (to, from, next) => {
         const lang = to.params.lang;
         if (["da", "en"].includes(lang)) {
@@ -34,12 +34,12 @@ const router = new Router({
             {
               name: "time",
               path: "time",
-              component: () => import("./components/pages/Settings.time.vue")
+              component: () => import("./components/pages/settings/time.vue")
             },
             {
               name: "login",
               path: "login",
-              component: () => import("./components/pages/Settings.login.vue")
+              component: () => import("./components/pages/settings/login.vue")
             }
           ]
         },

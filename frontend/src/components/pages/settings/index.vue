@@ -5,8 +5,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import SubNavBar from "../navigation/SubNavBar.vue";
-// import {MenuEntry} from "../navigation/SubNavBar.vue";
+import SubNavBar from "@/components/navigation/SubNavBar.vue";
 @Component({
   components: {
     "subnav-bar": SubNavBar
