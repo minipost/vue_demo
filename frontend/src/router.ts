@@ -1,9 +1,8 @@
 import Vue from "vue";
 import Router, { RouterOptions } from "vue-router";
-import Settings from "./views/Settings.vue";
+import Settings from "./components/pages/Settings.vue";
 import i18n from "@/plugins/i18n";
-// import NavBar from "./components/NavBar.vue";
-import MainView from "./views/MainView.vue";
+import MainView from "./components/pages/MainView.vue";
 import NotFound from "./components/NotFount.vue";
 
 const router = new Router({
@@ -48,7 +47,7 @@ const router = new Router({
         {
           name: "About",
           path: "about",
-          component: () => import("./views/About.vue")
+          component: () => import("./components/pages/About.vue")
         },
         {
           path: "template", // hidden menues for development

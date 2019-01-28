@@ -4,7 +4,7 @@
   </div>
 </template>
 <script lang="ts">
-import Navbar from "./components/NavBar.vue";
+// import Navbar from "./components/navigation/NavBar.vue";
 import Vue from "vue";
 export default Vue.extend({
   // components: { "nav-bar": Navbar }

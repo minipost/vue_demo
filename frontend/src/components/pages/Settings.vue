@@ -5,14 +5,15 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import SubNavBar, { MenuItem } from "../components/SubNavBar.vue";
+import SubNavBar from "../navigation/SubNavBar.vue";
+// import {MenuEntry} from "../navigation/SubNavBar.vue";
 @Component({
   components: {
     "subnav-bar": SubNavBar
   }
 })
 export default class SettingsView extends Vue {
-  private links: MenuItem[] = [
+  private links = [
     { text: "TIME", routeName: "time" },
     { text: "LOGIN", routeName: "login" }
   ];

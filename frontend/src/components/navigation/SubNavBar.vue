@@ -29,7 +29,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-export interface MenuItem {
+export interface MenuEntry {
   routeName: string;
   text: string;
 }
@@ -38,7 +38,7 @@ export interface MenuItem {
   props: { options: Array }
 })
 export default class SubNavBar extends Vue {
-  private options!: MenuItem[];
+  private options!: MenuEntry[];
   // private path!: string;
   private toggleIcon = "+";
   // private toggle() {
