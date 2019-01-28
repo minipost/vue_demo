@@ -40,6 +40,11 @@ const router = new Router({
               name: "login",
               path: "login",
               component: () => import("./components/pages/settings/login.vue")
+            },
+            {
+              name: "http",
+              path: "http",
+              component: () => import("./components/pages/settings/http.vue")
             }
           ]
         },

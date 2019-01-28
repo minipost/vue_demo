@@ -21,7 +21,7 @@
                 type="text"
                 v-model="form.url"
                 required
-                placeholder="Select path"
+                placeholder="Select path (routes: /[a-f]*)"
                 :state="form.url.length>0"
               ></b-form-input>
             </b-form-group>
