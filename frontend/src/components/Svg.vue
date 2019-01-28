@@ -1,16 +1,29 @@
 <template>
   <div>
+    <svg viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
+      <text x="20" y="35" class="small">My</text>
+      <text x="40" y="35" class="heavy">cat</text>
+      <text x="55" y="55" class="small">is</text>
+    </svg>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="400"
       height="100"
-      :viewBox="[x0,y0,Dt,dy]"
+      :viewBox="[tMin,yMin,Dt,dy]"
       preserveAspectRatio="none"
       style="background-color:white"
     >
+      <path :d="[grid]" stroke="red" stroke-width="3" fill="none"></path>
       <polyline :points="[points]" style="fill:none;stroke:black;stroke-width:5"></polyline>
+      <text :x="tMin+0.8*Dt" y="55" class="Rrrrr">Grumpy!</text>
     </svg>
-    <button @click="elapse">elapse</button>
+    <button @click="elapse">run</button>
+    <button @click="pause">pause</button>
+    
+    <p>
+      <b>Time:</b>
+      {{t}} ms
+    </p>
   </div>
 </template>
 <script lang="ts">
@@ -28,13 +41,17 @@ function getBuffer(size: number) {
   props: { options: Array }
 })
 export default class SubNavBar extends Vue {
+  private t0 = new Date().getTime();
   private t = 0; // 10 sec
   private Dt = 10000; // 10 s
   private dt = 10; // 10 ms
   private dy = 200;
-  private x0 = 0;
-  private y0 = -100;
+  private tMin = 0;
+  private yMin = -100;
   private points = getBuffer(this.Dt / this.dt);
+  private pointsTimer = 0;
+  private gridTimer = 0;
+  private grid: string[] = [];
   private getTime() {
     this.t += this.dt;
     return this.t;
@@ -42,28 +59,52 @@ export default class SubNavBar extends Vue {
   }
   private f(t: number) {
     const A1 = this.dy / 2;
-    const T1 = (1000 / (2 * Math.PI));
-    const A2 = A1/2
-    const A3 = A1*0.8
-    const T3 = (7000 / (2 * Math.PI));
-    return A1 * Math.sin(t / T1)+A2*Math.random()+A3*Math.sin(t/T3)**2;
+    const T1 = 1000 / (2 * Math.PI);
+    const A2 = A1 / 2;
+    const A3 = A1 * 0.8;
+    const T3 = 7000 / (2 * Math.PI);
+    return (
+      A1 * Math.sin(t / T1) + A2 * Math.random() + A3 * Math.sin(t / T3) ** 2
+    );
   }
-  private updatePoints(data:number[]) {
-    this.points.push(data)
-    this.points.shift()
+  private updatePoints(data: number[]) {
+    this.points.push(data);
+    this.points.shift();
+  }
+  private updateGrid() {
+    const t = this.t.toString();
+    const start = "M " + t + "0 ";
+    const end = "l " + t + " " + this.dy.toString()+' ';
+    this.grid.push(start + end + start);
   }
   private elapse() {
-    setInterval(() => {
-      this.t += this.dt;
-      this.x0 = this.t - this.Dt;
-      this.updatePoints([this.t, this.f(this.t)])
-    //   this.points.push();
+    this.pointsTimer = setInterval(() => {
+      this.t = new Date().getTime() - this.t0;
+      this.tMin = this.t - this.Dt;
+      this.updatePoints([this.t, this.f(this.t)]);
     }, this.dt);
+    this.gridTimer = setInterval(() => {
+      this.updateGrid();
+    }, 1000);
+  }
+  private pause() {
+    clearInterval(this.pointsTimer);
+    clearInterval(this.gridTimer);
   }
 }
 </script>
 <style lang="css" scoped>
-.sidebar {
-  background-color: rgba(98, 151, 248, 0.431);
+.small {
+  font: italic 13px sans-serif;
+}
+.heavy {
+  font: bold 30px sans-serif;
+}
+
+/* Note that the color of the text is set with the    *
+     * fill property, the color property is for HTML only */
+.Rrrrr {
+  font: italic 50 serif;
+  fill: red;
 }
 </style>
