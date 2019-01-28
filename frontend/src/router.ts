@@ -3,7 +3,7 @@ import Router, { RouterOptions } from "vue-router";
 import Settings from "./components/pages/Settings.vue";
 import i18n from "@/plugins/i18n";
 import MainView from "./components/pages/MainView.vue";
-import NotFound from "./components/pages/NotFount.vue";
+import NotFound from "./components/pages/NotFound.vue";
 
 const router = new Router({
   mode: "history",
@@ -14,7 +14,6 @@ const router = new Router({
       name: "Lang",
       component: MainView,
       beforeEnter: (to, from, next) => {
-        // console.log('to: "', to.path, '" from: "', from.path, '"');
         const lang = to.params.lang;
         if (["da", "en"].includes(lang)) {
           if (i18n.locale !== lang) {

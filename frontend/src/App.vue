@@ -1,10 +1,9 @@
 <template>
   <div id="app">
-    <router-view :to="{ name: 'Settings' }"></router-view>
+    <router-view></router-view>
   </div>
 </template>
 <script lang="ts">
-// import Navbar from "./components/navigation/NavBar.vue";
 import Vue from "vue";
 export default Vue.extend({
   // components: { "nav-bar": Navbar }
