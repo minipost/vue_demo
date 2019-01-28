@@ -58,8 +58,8 @@ const router = new Router({
           component: () => import("./components/Template.vue")
         },
         {
-          path: "http", // hidden menues for development
-          component: () => import("./components/HttpRequestForm.vue")
+          path: "svg",
+          component: () => import("./components/Svg.vue")
         }
 
       ]
