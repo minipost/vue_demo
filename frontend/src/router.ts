@@ -3,7 +3,7 @@ import Router, { RouterOptions } from "vue-router";
 import Settings from "./components/pages/Settings.vue";
 import i18n from "@/plugins/i18n";
 import MainView from "./components/pages/MainView.vue";
-import NotFound from "./components/NotFount.vue";
+import NotFound from "./components/pages/NotFount.vue";
 
 const router = new Router({
   mode: "history",
@@ -35,12 +35,12 @@ const router = new Router({
             {
               name: "time",
               path: "time",
-              component: () => import("./components/Settings.time.vue")
+              component: () => import("./components/pages/Settings.time.vue")
             },
             {
               name: "login",
               path: "login",
-              component: () => import("./components/Settings.login.vue")
+              component: () => import("./components/pages/Settings.login.vue")
             }
           ]
         },
@@ -65,11 +65,11 @@ const router = new Router({
     { path: "/404", component: NotFound },
     {
       path: "*",
-      // redirect: "/404",
-      // beforeEnter: (to, from, next) => {
-      //   console.error("to", to, "from", from);
-      //   next();
-      // }
+      redirect: "/404",
+      beforeEnter: (to, from, next) => {
+        console.error("to", to, "from", from);
+        next();
+      }
     }
   ]
 });
