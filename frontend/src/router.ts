@@ -3,7 +3,7 @@ import Router, { RouterOptions } from "vue-router";
 import Settings from "@/components/pages/settings/index.vue";
 import i18n from "@/plugins/i18n";
 import pages from "@/components/pages/index.vue";
-import NotFound from "@/components/pages/NotFound.vue";
+import NotFound from "@/components/pages/not-found/index.vue";
 
 const router = new Router({
   mode: "history",
@@ -46,7 +46,7 @@ const router = new Router({
         {
           name: "About",
           path: "about",
-          component: () => import("./components/pages/About.vue")
+          component: () => import("./components/pages/about/index.vue")
         },
         {
           path: "template", // hidden menues for development
