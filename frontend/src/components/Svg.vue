@@ -1,10 +1,5 @@
 <template>
   <div>
-    <svg viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
-      <text x="20" y="35" class="small">My</text>
-      <text x="40" y="35" class="heavy">cat</text>
-      <text x="55" y="55" class="small">is</text>
-    </svg>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="400"
@@ -13,9 +8,7 @@
       preserveAspectRatio="none"
       style="background-color:white"
     >
-      <path :d="[grid]" stroke="red" stroke-width="3" fill="none"></path>
       <polyline :points="[points]" style="fill:none;stroke:black;stroke-width:5"></polyline>
-      <text :x="tMin+0.8*Dt" y="55" class="Rrrrr">Grumpy!</text>
     </svg>
     <button @click="elapse">run</button>
     <button @click="pause">pause</button>
@@ -40,7 +33,7 @@ function getBuffer(size: number) {
   components: {},
   props: { options: Array }
 })
-export default class SubNavBar extends Vue {
+export default class Graph extends Vue {
   private t0 = new Date().getTime();
   private t = 0; // 10 sec
   private Dt = 10000; // 10 s

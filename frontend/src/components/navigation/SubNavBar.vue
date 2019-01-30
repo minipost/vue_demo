@@ -1,12 +1,13 @@
 <template><div>
   <b-col class="p-0" m="0" md="auto">
-    <b-nav fill sm="12" md="auto" pills class="bg-secondary text-white" vertical>
-      <b-navbar-toggle
+    <b-nav fill  pills class="bg-secondary text-white" vertical>
+      
+      <b-navbar-toggle 
         type="light"
         variant="dark"
-        @click="toggle"
+        @click="toggle"        
         target="nav_dropdown_collapse2"
-      >{{toggleIcon}}</b-navbar-toggle>
+      >+</b-navbar-toggle>
       <b-collapse id="nav_dropdown_collapse2" visible>
         <b-nav-item
           v-for="item in options"

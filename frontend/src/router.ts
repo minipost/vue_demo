@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router, { RouterOptions } from "vue-router";
-import Settings from "@/components/pages/settings/index.vue";
+import Demo from "@/components/pages/demo/index.vue";
 import i18n from "@/plugins/i18n";
 import pages from "@/components/pages/index.vue";
 import NotFound from "@/components/pages/not-found/index.vue";
@@ -27,39 +27,39 @@ const router = new Router({
       },
       children: [
         {
-          name: "Settings",
-          path: "settings",
-          component: Settings,
+          name: "Demo",
+          path: "demo",
+          component: Demo,
           children: [
             {
               name: "time",
               path: "time",
-              component: () => import("./components/pages/settings/time.vue")
+              component: () => import("./components/pages/demo/time.vue")
             },
             {
-              name: "login",
-              path: "login",
-              component: () => import("./components/pages/settings/login.vue")
+              name: "graph-demo",
+              path: "graph-demo",
+              component: () => import("./components/pages/demo/graphDemo.vue")
             },
             {
               name: "http",
               path: "http",
-              component: () => import("./components/pages/settings/http.vue")
+              component: () => import("./components/pages/demo/http.vue")
             }
           ]
         },
         {
-          name: "About",
-          path: "about",
-          component: () => import("./components/pages/about/index.vue")
+          name: "Settings",
+          path: "settings",
+          component: () => import("./components/pages/settings/index.vue")
         },
         {
           path: "template", // hidden menues for development
           component: () => import("./components/Template.vue")
         },
         {
-          path: "svg",
-          component: () => import("./components/Svg.vue")
+          path: "graph",
+          component: () => import("./components/graph.vue")
         }
 
       ]

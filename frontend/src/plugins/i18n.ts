@@ -12,6 +12,7 @@ export interface Translations {
   'LOGIN'?: string;
   'TIME'?: string;
   'PLEASE_FILL_OUT_THIS_FIELD'?: string;
+  'SVG_GRAPH'?: string;
 }
 interface Messages {
   en: Translations;
@@ -29,7 +30,10 @@ const messages = {
     'SETTINGS': "settings",
     'LOGIN': "login",
     'TIME': "time",
-    'PLEASE_FILL_OUT_THIS_FIELD':"please fill out this field"
+    'PLEASE_FILL_OUT_THIS_FIELD':"please fill out this field",
+    'SVG_GRAPH': "svg graph",
+    "DEMO":"demo",
+    "HTTP_REQUEST": "http request"
   },
   da: {
     'HOME': "hjem",
@@ -41,8 +45,10 @@ const messages = {
     'SETTINGS': "indstillinger",
     'LOGIN': "login",
     'TIME': "tid",
-    'PLEASE_FILL_OUT_THIS_FIELD':"udfyld venligst dette felt"
-
+    'PLEASE_FILL_OUT_THIS_FIELD':"udfyld venligst dette felt",
+    'SVG_GRAPH': "svg graph",
+    "DEMO":"demo",
+    "HTTP_REQUEST": "http forespørgsel"
   }
 };
 

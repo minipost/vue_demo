@@ -1,13 +1,14 @@
 <template>
   <div>
-    {{$t('ABOUT.SOME_TEXT')}}
+    {{$t('LOGIN')}}
+    <graph-demo></graph-demo>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-
+import svg from "@/components/Svg.vue"
 @Component({
-  components: {}
+  components: {'graph-demo': svg}
 })
 export default class About extends Vue {}
 </script>

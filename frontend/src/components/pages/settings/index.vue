@@ -1,28 +1,13 @@
 <template>
-  <b-container fluid>
-    <b-row >
-      <subnav-bar v-bind:options="links"></subnav-bar>
-      <b-col md="auto">
-        <router-view></router-view>
-      </b-col>
-    </b-row>
-  </b-container>
-</template>
+  <div>
+    {{$t('ABOUT.SOME_TEXT')}}
+  </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import SubNavBar, { MenuEntry } from "@/components/navigation/SubNavBar.vue";
 
 @Component({
-  components: {
-    "subnav-bar": SubNavBar
-  }
+  components: {}
 })
-export default class SettingsView extends Vue {
-  private links: MenuEntry[] = [
-    { text: "HTTP request", routeName: "http" },
-    { text: "TIME", routeName: "time" },
-    { text: "LOGIN", routeName: "login" }
-  ];
-}
+export default class About extends Vue {}
 </script>
